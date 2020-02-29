@@ -285,13 +285,11 @@ def get_poke_template():
 
     return template
 
-
 def new_poke_obj():
     new_pid = uuid.uuid4().hex[:16]
     new_poke = get_poke_template()
     new_poke['id'] = new_poke
     return new_pid, new_poke
-
 
 def get_poke(pid):
     return DB.collection(POKES_TABLE).document(
@@ -300,7 +298,6 @@ def get_poke(pid):
 def set_poke(pid, poke_as_json):
     doc_ref = DB.collection(POKES_TABLE).document(pid)
     doc_ref.set(poke_as_json)
-
 
 def add_new_poke():
     new_pid, new_poke = new_poke_obj()
