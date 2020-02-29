@@ -13,6 +13,10 @@ const Pokes = () => {
                     name="Poke Name"
                     platform="fb"
                     reward={15}
+                    type={"tw_tweet"}
+                    data={{
+                            text: "This is tweet! Crazy isn't it? #tweet #cool"
+                        }}
                 />
                 <PokeCard 
                     name="Poke Name"
