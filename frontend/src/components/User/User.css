@@ -1,0 +1,44 @@
+.user-info-card {
+    display: table;
+}
+
+.user-info-card .user-image, .user-info-card .user-info {
+    display: table-cell;
+}
+
+.user-info-card .user-image {
+    width: 80px;
+    border-radius: 50%;
+}
+
+.user-info-card .user-info {
+    vertical-align: middle;
+    padding: 20px;
+}
+.user-info h3 {
+    font-size: 24px;
+    margin: 0;
+}
+
+table {
+    margin-top: 25px;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+name {
+    margin: 10px 0;
+    opacity: 0.5;
+}
+
+th {
+    text-align: left;
+    padding: 10px 0 0;
+    font-weight: 500;
+}
+
+td {
+    padding: 10px 0 0;
+    text-align: right;
+    font-weight: 600;
+}

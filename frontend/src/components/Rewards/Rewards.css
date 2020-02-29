@@ -1,0 +1,12 @@
+.point-display {
+    width: 100%;
+    display: table;
+}
+
+.point-display img {
+    display: table-cell;
+}
+
+.point-display .info {
+    display: table-cell;
+}

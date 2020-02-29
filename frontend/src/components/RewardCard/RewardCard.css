@@ -1,0 +1,81 @@
+.RewardCard {
+    position: relative;
+    width: 100%;
+    color: #212121;
+    background-color: white;
+    border-radius: 12px;
+    box-sizing: border-box;
+    box-shadow:
+            0 3.4px 2.7px rgba(0, 0, 0, 0.006),
+            0 8.7px 6.9px rgba(0, 0, 0, 0.009),
+            0 17.7px 14.2px rgba(0, 0, 0, 0.011),
+            0 36.5px 29.2px rgba(0, 0, 0, 0.014),
+            0 100px 80px rgba(0, 0, 0, 0.02)
+    ;
+    overflow: hidden;
+    font-weight: 700;
+    margin-bottom: 12px;
+    -webkit-transition: transform 0.2s;
+    -moz-transition: transform 0.2s;
+    -ms-transition: transform 0.2s;
+    -o-transition: transform 0.2s;
+    transition: transform 0.2s;
+}
+
+.RewardCard img {
+    width: 100%;
+}
+
+.RewardCard .info {
+    padding: 10px 20px 20px 20px;
+}
+
+.RewardCard .info h2, p {
+    margin: 0;
+}
+
+.RewardCard .info h2 {
+    font-size: 24px;
+    margin-bottom: 0.3em;
+}
+
+.RewardCard .info p {
+    margin: 0.33em 0;
+    font-weight: 500;
+    opacity: 0.5;
+}
+
+.RewardCard .claim-wrapper {
+    display: table;
+    width: 100%;
+}
+
+.RewardCard .claim {
+    padding-top: 10px;
+    text-align: right;
+    display: table-cell;
+}
+
+.RewardCard .claim button {
+    padding: 12px 20px;
+    background-color: #6f03fc;
+    color: white;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.RewardCard .cost {
+    display: table-cell;
+    opacity: 0.5;
+}
+
+.RewardCard * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

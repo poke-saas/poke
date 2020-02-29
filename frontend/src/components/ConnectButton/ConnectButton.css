@@ -1,0 +1,48 @@
+button.connect {
+    width: 100%;
+    margin: 0px 0 10px 0;
+    padding: 20px 0;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow:
+        0 3.4px 2.7px rgba(0, 0, 0, 0.006),
+        0 8.7px 6.9px rgba(0, 0, 0, 0.009),
+        0 17.7px 14.2px rgba(0, 0, 0, 0.011),
+        0 36.5px 29.2px rgba(0, 0, 0, 0.014),
+        0 100px 80px rgba(0, 0, 0, 0.02)
+    ;
+    outline: none;
+    transition: all 0.2s;
+}
+
+button.connect#facebook {
+    background-color: #3b5998;
+}
+
+button.connect#facebook-connected {
+    background-color: white;
+    color: #3b5998;
+}
+
+button.connect#twitter {
+    background-color: #1da1f2;
+}
+
+button.connect#twitter-connected {
+    background-color: white;
+    color: #1da1f2;
+}
+
+button.connect#instagram {
+    background-color: #c13584;
+}
+
+button.connect#instagram-connected {
+    background-color: white;
+    color: #c13584;
+}

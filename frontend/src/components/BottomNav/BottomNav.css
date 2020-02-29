@@ -1,0 +1,61 @@
+nav {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    background-color: #6f03fc;
+    padding: 0;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+    flex-flow: column column;
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+    bottom: 0;
+    z-index: 999;
+    justify-content: stretch;
+}
+
+nav * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+nav .nav-item {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    flex: 1;
+    padding: 1em 0;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+nav .nav-item * {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox;      /* TWEENER - IE 10 */
+    display: -webkit-flex;     /* NEW - Chrome */
+    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+nav .nav-item .label {
+    margin-top: 4px;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+nav .nav-item.active {
+    background-color: rgba(255, 255, 255, 0.3);
+}
