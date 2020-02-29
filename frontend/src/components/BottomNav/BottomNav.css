@@ -8,7 +8,7 @@ nav {
     padding: 0;
     box-sizing: border-box;
     flex-wrap: nowrap;
-    flex-flow: column;
+    flex-direction: row;
     width: 100%;
     position: fixed;
     overflow: hidden;
