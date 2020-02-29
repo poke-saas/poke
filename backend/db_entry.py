@@ -29,6 +29,26 @@ S_INSTAGRAM = 1
 S_TWITTER = 2
 S_LINKEDIN = 3
 
+### ABSTRACT OPERATORS
+
+def get():
+	pass
+
+def set(loc, id, data):
+	doc_ref = DB.collection(loc).document(uid)
+	doc_ref.set(data)
+
+def new(new_fn, set_fn):
+	new_id, new_obj = new_fn()
+	set_fn(new_id, new_obj)
+	return new_id
+
+def add():
+	pass
+
+def rm():
+	pass
+
 ### HELPERS 
 
 # hold encryption key in env vars of function
@@ -41,7 +61,7 @@ def hash_string_sha256(to_hash):
 	m.update(to_hash.encode())
 	return m.hexdigest()
 
-### USER METHODS
+### USER HELPER METHODS
 def get_user_template():
 	template = DB.collection(USERS_TABLE).document(
 		DEFAULT_USER).get().to_dict()
@@ -68,6 +88,10 @@ def add_new_user():
 	set_user(new_uid, new_user)
 	return new_uid
 
+def rm_user(uid):
+	DB.collection(USERS_TABLE).document(uid).delete()
+
+### ORGS OBJECT MODFIER METHODS
 def add_social_integration(uid, s_type, s_uname, s_pwd):
 	user = get_user(uid)
 	hash_uname = hash_string_sha256(s_uname)
@@ -95,15 +119,17 @@ def add_complete_poke(uid, poke_id):
 
 # todo: inline from davis
 def add_claimed_reward():
-	pass
-
-def add_user_fullname_and_profile_pic(uid, full_name, plink):
 	user = get_user(uid)
-	user['full_name'] = full_name
+	user['complete_pokes_ids'].append(poke_id)
+	set_user(uid, user)
+
+def add_user_fullname_and_profile_pic(uid, name, plink):
+	user = get_user(uid)
+	user['full_name'] = name
 	user['profile_picture_link'] = plink
 	set_user(uid, user)
 
-### ORGS METHODS
+### ORGS HELPER METHODS
 def get_orgs_template():
 	template = DB.collection(ORGS_TABLE).document(
 		DEFAULT_ORG).get().to_dict()
@@ -120,31 +146,85 @@ def new_org_obj():
 	new_org['id'] = new_uid
 	return new_uid, new_org
 
-def get_org(uid):
+def get_org(oid):
 	return DB.collection(ORGS_TABLE).document(
-		u'{}'.format(uid)).get().to_dict()
+		u'{}'.format(oid)).get().to_dict()
 
-def set_org(uid, org_as_json):
-	doc_ref = DB.collection(ORGS_TABLE).document(uid)
-	doc_ref.set(org_as_json)
+def set_org(oid, org_as_json):
+	doc_ref = DB.collection(ORGS_TABLE).document(oid)
+	doc_ref.set(user_as_json)
 
 def add_new_org():
 	new_uid, new_org = new_org_obj()
 	set_org(new_uid, new_org)
 	return new_uid
 
-# todo: add org stuff like adding users, rewards, and pokes
+def rm_org(oid):
+	DB.collection(ORGS_TABLE).document(oid).delete()
+
+### ORGS OBJECT MODFIER METHODS
+def add_org_name(oid, name):
+	org = get_org(oid)
+	org['name'] = name
+	set_org(oid, org)
+
+def add_org_media():
+	pass
+
 def add_org_user(uid, user_ref):
 	org = DB.collection(ORGS_TABLE).document(uid).get().to_dict()
 	user = DB.collection(USERS_TABLE).document(user_ref).get().to_dict()
 	org['user_ids'].append(user['id'])
 	set_org(uid, org)
 
-def add_org_poke():
+def add_org_poke(oid, poke_id):
+	org = get_org(oid)
+	org['poke_ids'].append(poke_id)
+	set_org(oid, org)
+
+def add_org_reward(oid, reward_id):
+	org = get_org(oid)
+	org['rewards_ids'].append(reward_id)
+	set_org(oid, org)
+
+def rm_org_poke(oid, poke_id):
+	org = get_org(oid)
+	rm_idx = None
+	pids = org['poke_ids']
+
+	for idx, p in enumerate(pids):
+		if p == poke_id:
+			rm_idx = idx
+			break
+
+	if rm_idx is not None:
+		pids.pop(rm_idx)
+	else:
+		pass
+		# todo handle errors
+
+	org['poke_ids'] = pids
+	set_org(oid, org)
+
+def rm_org_reward():
 	pass
 
-def add_org_reward():
+### POKE HELPER METHODS
+def get_poke_template():
 	pass
+
+def get_poke():
+	pass
+
+def set_poke():
+	pass
+
+def add_poke():
+
+def rm_poke(id):
+
+	pass
+
 
 if __name__ == '__main__':
 	pass

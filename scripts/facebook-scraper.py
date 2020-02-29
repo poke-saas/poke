@@ -1,4 +1,4 @@
-from selenium import webdriver 
+"""from selenium import webdriver 
 from time import sleep 
   
 usr=input('Enter Email Id:')  
@@ -24,4 +24,5 @@ login_box.click()
 print ("Done") 
 input('Press anything to quit') 
 driver.quit() 
-print("Finished") 
+print("Finished") """
+
