@@ -17,6 +17,12 @@ ORGS_TABLE = u'Orgs'
 DEFAULT_ORG = u'orgs_model'
 
 USER_CRED = 'user_credentials'
+def get_db():
+	return DB
+
+def get_orgs_template():
+	template = DB.collection(ORGS_TABLE).document(
+		DEFAULT_ORG).get().to_dict()
 
 S_FACEBOOK = 0
 S_INSTAGRAM = 1
@@ -91,7 +97,7 @@ def add_complete_poke(uid, poke_id):
 def add_claimed_reward():
 	pass
 
-def add_user_fullname_and_profile_pic(name, plink):
+def add_user_fullname_and_profile_pic(uid, full_name, plink):
 	user = get_user(uid)
 	user['full_name'] = full_name
 	user['profile_picture_link'] = plink
@@ -103,8 +109,9 @@ def get_orgs_template():
 		DEFAULT_ORG).get().to_dict()
 
 	template['user_ids'].pop()
-	template['rewards_ids'].pop()
+	template['reward_ids'].pop()
 	template['poke_ids'].pop()
+	template['name'] = str()
 	return template
 
 def new_org_obj():
@@ -119,7 +126,7 @@ def get_org(uid):
 
 def set_org(uid, org_as_json):
 	doc_ref = DB.collection(ORGS_TABLE).document(uid)
-	doc_ref.set(user_as_json)
+	doc_ref.set(org_as_json)
 
 def add_new_org():
 	new_uid, new_org = new_org_obj()
@@ -127,8 +134,11 @@ def add_new_org():
 	return new_uid
 
 # todo: add org stuff like adding users, rewards, and pokes
-def add_org_user():
-	pass
+def add_org_user(uid, user_ref):
+	org = DB.collection(ORGS_TABLE).document(uid).get().to_dict()
+	user = DB.collection(USERS_TABLE).document(user_ref).get().to_dict()
+	org['user_ids'].append(user['id'])
+	set_org(uid, org)
 
 def add_org_poke():
 	pass
@@ -138,8 +148,3 @@ def add_org_reward():
 
 if __name__ == '__main__':
 	pass
-
-
-
-
-

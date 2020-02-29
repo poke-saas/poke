@@ -44,5 +44,4 @@ def get_all_elements():
     return all_fields
 
 if __name__ == '__main__':
-    construct_org([0,1,2], [7,8,9], [2,3], '0')
     print(get_all_elements())
