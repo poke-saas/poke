@@ -46,11 +46,12 @@ def update_db():
     # todo: connect to database
     db = firestore.Client()
 
-    users_ref = db.collection(u'Users')
-    users = users_ref.stream()
-
-    for u in users:
-        print(u.to_dict())
+    users_ref = db.collection(u'Users').document(u'user_model')
+    users_ref.set(
+        {
+            u'first'
+        }
+    )
     return
 
 
