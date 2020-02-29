@@ -5,10 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color:#f0f3f7;
-  padding-top: 4em;
-  padding-bottom: 7em;
-  color: #121212
+  background-color: #6f03fc;
+  color: #12121;
+}
+
+.App {
+  background-color: #f0f3f7;
+  min-height: calc(100vh - 10.5em);
+  padding-top: 4.5em;
+  padding-bottom: 6em;
 }
 
 code {
@@ -23,7 +28,7 @@ main.container {
 }
 
 header {
-  padding: 1.1em 0;
+  padding: 1em 0;
   background-color: #6f03fc;
   text-align: center;
   color: white;
