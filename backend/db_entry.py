@@ -16,6 +16,9 @@ DEFAULT_USER = u'user_model'
 ORGS_TABLE = u'Orgs'
 DEFAULT_ORG = u'orgs_model'
 
+REWARDS_TABLE = u'Rewards'
+DEFAULT_REWARD = u'reward_model'
+
 USER_CRED = 'user_credentials'
 def get_db():
 	return DB
@@ -118,9 +121,9 @@ def add_complete_poke(uid, poke_id):
 	set_user(uid, user)
 
 # todo: inline from davis
-def add_claimed_reward():
+def add_claimed_reward(uid, reward_id):
 	user = get_user(uid)
-	user['complete_pokes_ids'].append(poke_id)
+	user['complete_pokes_ids'].append(reward_id)
 	set_user(uid, user)
 
 def add_user_fullname_and_profile_pic(uid, name, plink):
@@ -152,7 +155,7 @@ def get_org(oid):
 
 def set_org(oid, org_as_json):
 	doc_ref = DB.collection(ORGS_TABLE).document(oid)
-	doc_ref.set(user_as_json)
+	doc_ref.set(org_as_json)
 
 def add_new_org():
 	new_uid, new_org = new_org_obj()
@@ -192,8 +195,8 @@ def rm_org_poke(oid, poke_id):
 	rm_idx = None
 	pids = org['poke_ids']
 
-	for idx, p in enumerate(pids):
-		if p == poke_id:
+	for idx, pid in enumerate(pids):
+		if pid == poke_id:
 			rm_idx = idx
 			break
 
@@ -206,8 +209,24 @@ def rm_org_poke(oid, poke_id):
 	org['poke_ids'] = pids
 	set_org(oid, org)
 
-def rm_org_reward():
-	pass
+def rm_org_reward(oid, reward_id):
+	org = get_org(oid)
+	rm_idx = None
+	rids = org['reward_ids']
+
+	for idx, rid in enumerate(rids):
+		if rid == reward_id:
+			rm_idx = idx
+			break
+
+	if rm_idx is not None:
+		rids.pop(rm_idx)
+	else:
+		pass
+		# todo handle errors
+
+	org['reward_ids'] = rids
+	set_org(oid, org)
 
 ### POKE HELPER METHODS
 def get_poke_template():
@@ -222,9 +241,37 @@ def set_poke():
 def add_poke():
 
 def rm_poke(id):
-
 	pass
 
+### REWARD HELPER METHODS
+def get_reward_template():
+	return DB.collection(REWARDS_TABLE).document(
+		DEFAULT_REWARD).get().to_dict()
+
+def new_reward_obj():
+	new_rid = uuid.uuid4().hex[:16]
+	new_reward = get_reward_template()
+	new_reward['id'] = new_rid
+	return new_rid, new_reward
+
+def get_reward(rid):
+	return DB.collection(REWARDS_TABLE).document(
+		rid).get().to_dict()
+
+def set_reward(rid, reward_as_json):
+	doc_ref = DB.collection(REWARDS_TABLE).document(rid)
+	doc_ref.set(reward_as_json)
+
+def add_reward(name, desc, cost, img_link):
+	new_rid, new_reward = new_reward_obj()
+	new_reward['name'] = name
+	new_reward['desc'] = desc
+	new_reward['cost'] = cost
+	new_reward['img'] = img_link
+	set_reward(new_rid, new_reward)
+
+def rm_reward(rid):
+	DB.collection(REWARDS_TABLE).document(rid).delete()
 
 if __name__ == '__main__':
 	pass
