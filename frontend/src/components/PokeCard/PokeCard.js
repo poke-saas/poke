@@ -2,8 +2,12 @@ import React from 'react';
 import './PokeCard.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimesCircle, faCheck} from '@fortawesome/free-solid-svg-icons'
+import {useDispatch, useSelector} from "react-redux";
 
 const PokeCard = (props) => {
+
+    const state = useSelector(state => state);
+    const dispatch = useDispatch();
 
     const getHashTags = (inputText) => {
         let regex = /(?:^|\s)(?:#)([a-zA-Z\d]+)/gm;
@@ -21,6 +25,11 @@ const PokeCard = (props) => {
     const handlePoke = () => {
         switch (props.type) {
             case "tw_tweet":
+                if(state.twitterToken === null) {
+                    dispatch({type: "SET_POKEMODAL_TYPE", pokeModalType: "connectToTwitter" });
+                    dispatch({type: "TOGGLE_POKEMODAL"});
+                    break;
+                }
                 let tweetHashtags = getHashTags(props.data.text)[0];
                 let tweetURL = "https://twitter.com/intent/tweet?text=" + getHashTags(props.data.text)[1];
                     if (tweetHashtags.length > 0) {
@@ -30,7 +39,8 @@ const PokeCard = (props) => {
                         }
                         tweetURL += tweetHashtags[tweetHashtags.length - 1];
                     }
-                window.location.href = tweetURL;
+                dispatch({type: "SET_POKEPULLUP_JOB", pokePullupJob:  {type: "verifyTweet", step1: tweetURL, step2: "job"}});
+                dispatch({type: "TOGGLE_POKEPULLUP"});
                 break;
             default:
                 console.error("Invalid Claim Type");

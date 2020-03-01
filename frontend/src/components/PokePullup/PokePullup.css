@@ -1,0 +1,57 @@
+#PokePullup {
+    position: fixed;
+    bottom: 0;
+    height: 65vh;
+    width: 100%;
+    border-radius: 12px;
+    background-color: white;
+    -webkit-transition: margin 0.3s;
+    -moz-transition: margin 0.3s;
+    -ms-transition: margin 0.3s;
+    -o-transition: margin 0.3s;
+    transition: margin 0.3s;
+    box-sizing: border-box;
+    padding: 20px;
+    z-index: 9999;
+    box-shadow:
+            0 3.4px 2.7px rgba(0, 0, 0, 0.006),
+            0 8.7px 6.9px rgba(0, 0, 0, 0.009),
+            0 17.7px 14.2px rgba(0, 0, 0, 0.011),
+            0 36.5px 29.2px rgba(0, 0, 0, 0.014),
+            0 100px 80px rgba(0, 0, 0, 0.05)
+;
+}
+
+.step {
+    font-size: 24px;
+    line-height: 3;
+    display: block;
+}
+
+.step button {
+    font-size: 20px;
+    font-weight: 600;
+    background-color: #6f03fc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-left: 15px;
+    outline: none;
+}
+
+.false-screen {
+    display: none;
+    z-index: 1000;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.1;
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+}

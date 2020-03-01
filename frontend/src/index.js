@@ -9,14 +9,22 @@ import storage from 'redux-persist/lib/storage'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-
 const initialState = {
-    twitterToken: null,
+    auth: "",
+    twitterToken: "val",
     facebookToken: null,
     instagramToken: null,
     declined: [],
     points: 10,
-    claimedRewards: []
+    claimedRewards: [],
+    pokeModal: {
+        type: "",
+        open: false
+    },
+    pokePullup: {
+        job: "",
+        open: true
+    }
   };
 
 const reducer = (state = initialState, action) => {
@@ -52,6 +60,42 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 points: state.points + action.points
                 // claimedRewards: state.rewards.push(action.reward)
+            };
+            break;
+        case "TOGGLE_POKEMODAL":
+            state = {
+                ...state,
+                pokeModal: {
+                    ...state.pokeModal,
+                    open: !state.pokeModal.open
+                }
+            };
+            break;
+        case "SET_POKEMODAL_TYPE":
+            state = {
+                ...state,
+                pokeModal: {
+                    ...state.pokeModal,
+                    type: action.pokeModalType
+                }
+            };
+            break;
+        case "TOGGLE_POKEPULLUP":
+            state = {
+                ...state,
+                pokePullup: {
+                    ...state.pokePullup,
+                    open: !state.pokePullup.open
+                }
+            };
+            break;
+        case "SET_POKEPULLUP_JOB":
+            state = {
+                ...state,
+                pokePullup: {
+                    ...state.pokePullup,
+                    job: action.pokePullupJob
+                }
             };
             break;
         default:
