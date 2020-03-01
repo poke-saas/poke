@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './PokePullup.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTimesCircle, faCheckSquare, faSpinner} from '@fortawesome/free-solid-svg-icons'
+import {faTimes, faCheckSquare, faSpinner} from '@fortawesome/free-solid-svg-icons'
 import {faSquare} from '@fortawesome/free-regular-svg-icons'
 import {useDispatch, useSelector} from "react-redux";
 import axios from 'axios';
@@ -27,9 +27,16 @@ const PokePullup = () => {
             .then(res => {
                 const checkPoke = res.data;
                 console.log(checkPoke);
-                setLoading(false);
-                updateStep(step + 1);
-                window.document.getElementById("rewardModal").innerHTML = "You've earned " + pokePullup.job.reward + " points!";
+                if (checkPoke.verified) {
+                    window.document.getElementById("rewardModal").innerHTML = "You've earned " + pokePullup.job.reward + " points!";
+                    setLoading(false);
+                    updateStep(step + 1);
+                }
+                else {
+                    window.document.getElementById("rewardModal").innerHTML = "Response timed out. Try again.";
+                    setLoading(false);
+                    updateStep(-999);
+                }
             })
         }
     };
@@ -64,7 +71,7 @@ const PokePullup = () => {
                     {step1}
                 </div>
                 <div className="step">
-                    <FontAwesomeIcon spin={loading} animation icon={loading ? faSpinner : (step > 2 ? faCheckSquare : faSquare)} />{step2}
+                    <FontAwesomeIcon spin={loading} animation icon={loading ? faSpinner : (step > 2 ? faCheckSquare : (step < -1 ? faTimes : faSquare))} />{step2}
                 </div>
                 <div id="rewardModal" />
             </section>
