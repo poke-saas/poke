@@ -10,8 +10,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const initialState = {
-    uid: "1076440981d44efb",
-    twitterToken: "val",
+    user: null,
+    uid: null,
+    twitterToken: null,
     facebookToken: null,
     instagramToken: null,
     declined: [],
@@ -33,6 +34,18 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   //  console.log(action);
     switch (action.type) {
+        case "HARD_RESET":
+            state = initialState;
+            break;
+        case "LOGIN":
+            state = {
+                ...state,
+                uid: action.user.id,
+                points: action.user.points,
+                user: action.user
+            };
+            console.log(state);
+            break;
         case "UPDATE_FACEBOOK_TOKEN":
             state = {
                 ...state,
@@ -52,10 +65,18 @@ const reducer = (state = initialState, action) => {
             };
             break;
         case "CLAIM_REWARD":
+            let currentRewards = state.rewards;
+            for (const reward of currentRewards) {
+                console.log(reward);
+                if (reward.id == action.thisReward) {
+                    reward["claimed"] = true;
+                    break;
+                }
+            }
             state = {
                 ...state,
                 points: action.points - action.cost
-                // claimedRewards: state.rewards.push(action.reward)
+
             };
             break;
         case "ADD_POINTS":
@@ -65,40 +86,63 @@ const reducer = (state = initialState, action) => {
                 // claimedRewards: state.rewards.push(action.reward)
             };
             break;
-        case "REFRESH_REWARDS":
-            let newRewards = state.rewards;
-            let allRewards = action.rewards;
-            for (const reward of allRewards) {
-                let isSame = false;
-                for (const oldReward of newRewards)
-                    if (reward.id == oldReward.id) {
-                        isSame = true;
-                    }
-                if (!isSame) {
-                    newRewards.push(reward);
+        case "USE_POKE":
+            let delPoke = -1;
+            for (let i = 0; i < state.pokes.length; i++) {
+                if (state.pokes[i].id == action.pokeID) {
+                    delPoke = i;
+                    break;
                 }
-            };
+            }
+            console.log(delPoke);
+            let newUsePokes = state.pokes.splice(delPoke);
+            console.log(newUsePokes);
             state = {
                 ...state,
-                rewards: newRewards
+                points: state.points + action.reward,
+                pokes: newUsePokes
             };
+            //console.log(state.pokes);
+            break;
+        case "REFRESH_REWARDS":
+            // let newRewards = state.rewards;
+            // let allRewards = action.rewards;
+            // for (const reward of allRewards) {
+            //     let isSame = false;
+            //     for (const oldReward of newRewards)
+            //         if (reward.id == oldReward.id) {
+            //             isSame = true;
+            //         }
+            //     if (!isSame) {
+            //         reward.claimed = false;
+            //         newRewards.push(reward);
+            //     }
+            // }
+            for (let reward of action.rewards) {
+                reward["claimed"] = false;
+            }
+            state = {
+                ...state,
+                rewards: action.rewards
+            };
+            console.log(state.rewards);
             break;
         case "REFRESH_POKES":
-            let newPokes = state.pokes;
-            let allPokes = action.pokes;
-            for (const poke of allPokes) {
-                let isSame = false;
-                for (const oldPoke of newPokes)
-                    if (poke.id == oldPoke.id) {
-                        isSame = true;
-                    }
-                if (!isSame) {
-                    newPokes.push(poke);
-                }
-            };
+            // let newPokes = state.pokes;
+            // let allPokes = action.pokes;
+            // for (const poke of allPokes) {
+            //     let isSame = false;
+            //     for (const oldPoke of newPokes)
+            //         if (poke.id == oldPoke.id) {
+            //             isSame = true;
+            //         }
+            //     if (!isSame) {
+            //         newPokes.push(poke);
+            //     }
+            // };
             state = {
                 ...state,
-                pokes: newPokes
+                pokes: action.pokes
             };
             break;
         case "TOGGLE_POKEMODAL":

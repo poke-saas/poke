@@ -7,6 +7,8 @@ import Users from './components/User/User';
 import BottomNav from './components/BottomNav/BottomNav'
 import PokeModal from './components/PokeModal/PokeModal'
 import PokePullup from "./components/PokePullup/PokePullup";
+import TwitterLoginModal from "./components/LoginModal/TwitterLoginModal";
+import SignIn from "./components/LoginModal/SignIn";
 
 function App() {
   return (
@@ -22,6 +24,12 @@ function App() {
               <Route exact={true} path='/user' render={() => (
                   <Users />
               )}/>
+                <Route exact={true} path='/connect-twitter' render={() => (
+                    <TwitterLoginModal />
+                )}/>
+                <Route exact={true} path='/login' render={() => (
+                    <SignIn />
+                )}/>
               <Route component={Pokes} />
             </Switch>
           <BottomNav />

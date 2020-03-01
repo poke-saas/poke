@@ -40,7 +40,7 @@ const PokeCard = (props) => {
                         tweetURL += tweetHashtags[tweetHashtags.length - 1];
                     }
                     console.log(props.id);
-                dispatch({type: "SET_POKEPULLUP_JOB", pokePullupJob:  {type: "verifyTweet", step1: tweetURL, step2: "job", pokeID: props.id, reward: props.reward}});
+                dispatch({type: "SET_POKEPULLUP_JOB", pokePullupJob:  {type: "verifyTweet", name: props.name, step1: tweetURL, step2: "job", pokeID: props.id, reward: props.reward}});
                 dispatch({type: "TOGGLE_POKEPULLUP"});
                 break;
             default:
@@ -62,7 +62,7 @@ const PokeCard = (props) => {
                 </div>
                 <div className="action">
                     <div className="delete" onClick={() => deferPoke()}>
-                        <FontAwesomeIcon icon={faTimesCircle} />
+                        {/*<FontAwesomeIcon icon={faTimesCircle} />*/}
                     </div>
                     <div className="claim" onClick={() => handlePoke()}>
                      <FontAwesomeIcon icon={faCheck} />&nbsp; Claim

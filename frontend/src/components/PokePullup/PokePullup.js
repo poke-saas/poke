@@ -19,6 +19,15 @@ const PokePullup = () => {
         dispatch({type: "TOGGLE_POKEPULLUP"});
     };
 
+    const fetchPokes = () => {
+        axios.get("https://us-central1-poke-app-269623.cloudfunctions.net/function-1?function=poke_refresh&uid=" + uid)
+            .then(res => {
+                const pokes = res.data;
+                console.log(pokes.pokes);
+                dispatch({type: "REFRESH_POKES", pokes: pokes.pokes});
+            })
+    };
+
     const handleVerifyingTweet = () => {
         if(step === 2) {
             setLoading(true);
@@ -30,7 +39,9 @@ const PokePullup = () => {
                 if (checkPoke.verified) {
                     window.document.getElementById("rewardModal").innerHTML = "You've earned " + pokePullup.job.reward + " points!";
                     setLoading(false);
+                    dispatch({type: "USE_POKE", pokeID: pokePullup.job.pokeID, reward: pokePullup.job.reward});
                     updateStep(step + 1);
+                    fetchPokes();
                 }
                 else {
                     window.document.getElementById("rewardModal").innerHTML = "Response timed out. Try again.";
@@ -65,7 +76,7 @@ const PokePullup = () => {
             <div onClick={() => handleTogglePokePullup()} className="false-screen" style={pokePullup.open ? {display: "none", opacity: 0} : {display: "block", opacity: 0.1}} />
             <section id="PokePullup" style={pokePullup.open ? {marginBottom: "-67vh"} : {marginBottom: "0"}}>
                 {/*<button onClick={() => handleTogglePokePullup()}><FontAwesomeIcon icon={faTimesCircle} /></button>*/}
-
+                <h2>{pokePullup.job.name}</h2>
                 <div className="step">
                     <FontAwesomeIcon className="checkbox" icon={step > 1 ? faCheckSquare : faSquare} />
                     {step1}
