@@ -27,6 +27,9 @@
     float: right;
     font-size: 22px;
     opacity: 0.5;
+    outline: none;
+    border: none;
+    background: none;
 }
 
 #PokeModal button:hover {

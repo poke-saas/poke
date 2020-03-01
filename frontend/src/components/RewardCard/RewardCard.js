@@ -14,7 +14,7 @@ const RewardCard = (props) => {
     const handleClaimReward = () => {
         console.log(points >= props.cost);
         if (points >= props.cost) {
-            axios.get("http://us-central1-poke-app-269623.cloudfunctions.net/poke-send-reward-verification-text?uid=" + uid + "&rid=" + props.id)
+            axios.get("https://us-central1-poke-app-269623.cloudfunctions.net/poke-send-reward-verification-text?uid=" + uid + "&rid=" + props.id)
                 .then(res => {
                     const resData = res;
                 });

@@ -9,6 +9,7 @@ import PokeModal from './components/PokeModal/PokeModal'
 import PokePullup from "./components/PokePullup/PokePullup";
 import TwitterLoginModal from "./components/LoginModal/TwitterLoginModal";
 import SignIn from "./components/LoginModal/SignIn";
+import {CSSTransition, TransitionGroup} from "react-transition-group";
 
 function App() {
   return (
