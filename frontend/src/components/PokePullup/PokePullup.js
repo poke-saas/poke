@@ -33,7 +33,7 @@ const PokePullup = () => {
         if(step === 2) {
             setLoading(true);
             console.log(pokePullup.job.pokeID);
-            axios.get('https://us-central1-poke-app-269623.cloudfunctions.net/function-1?function=check_poke&uid=' + uid + '&poke_id=' + pokePullup.job.pokeID)
+            axios.get('https://us-central1-poke-app-269623.cloudfunctions.net/function-2?function=check_poke&uid=' + uid + '&poke_id=' + pokePullup.job.pokeID)
             .then(res => {
                 const checkPoke = res.data;
                 console.log(checkPoke);
@@ -57,7 +57,7 @@ const PokePullup = () => {
         if(step === 2) {
             setLoading(true);
             console.log(pokePullup.job.pokeID);
-            axios.get('https://us-central1-poke-app-269623.cloudfunctions.net/function-1?function=check_poke&uid=' + uid + '&poke_id=' + pokePullup.job.pokeID)
+            axios.get('https://us-central1-poke-app-269623.cloudfunctions.net/function-2?function=check_poke&uid=' + uid + '&poke_id=' + pokePullup.job.pokeID)
                 .then(res => {
                     const checkPoke = res.data;
                     console.log(checkPoke);
