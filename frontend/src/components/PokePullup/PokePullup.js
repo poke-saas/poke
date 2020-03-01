@@ -17,6 +17,7 @@ const PokePullup = () => {
     const handleTogglePokePullup = () => {
         console.log("TOGGLED");
         dispatch({type: "TOGGLE_POKEPULLUP"});
+        updateStep(1);
     };
 
     const fetchPokes = () => {
@@ -52,6 +53,30 @@ const PokePullup = () => {
         }
     };
 
+    const handleVerifyingInsta = () => {
+        if(step === 2) {
+            setLoading(true);
+            console.log(pokePullup.job.pokeID);
+            axios.get('https://us-central1-poke-app-269623.cloudfunctions.net/function-1?function=check_poke&uid=' + uid + '&poke_id=' + pokePullup.job.pokeID)
+                .then(res => {
+                    const checkPoke = res.data;
+                    console.log(checkPoke);
+                    if (checkPoke.verified) {
+                        window.document.getElementById("rewardModal").innerHTML = "You've earned " + pokePullup.job.reward + " points!";
+                        setLoading(false);
+                        dispatch({type: "USE_POKE", pokeID: pokePullup.job.pokeID, reward: pokePullup.job.reward});
+                        updateStep(step + 1);
+                        fetchPokes();
+                    }
+                    else {
+                        window.document.getElementById("rewardModal").innerHTML = "Response timed out. Try again.";
+                        setLoading(false);
+                        updateStep(-999);
+                    }
+                })
+        }
+    };
+
     let step1, step2 = <></>;
 
     switch (pokePullup.job.type) {
@@ -64,6 +89,19 @@ const PokePullup = () => {
             step2 = (
                 <>
                     <button style={step === 2 ? {} : {backgroundColor: "lightGrey", color: "grey", opacity: 0.5}}  onClick={() => handleVerifyingTweet()}>Confirm Posted Tweet</button>
+                </>
+            );
+            break;
+        case "verifyInsta":
+            step1 = (
+                <>
+                    <div style={step === 1 ? {fontSize: "14px", lineHeight: 1.2, display: "inline-block"} : {backgroundColor: "lightGrey", color: "grey", opacity: 0.5, fontSize: "14px", lineHeight: 1.2} } onClick={() => {setTimeout(function() {updateStep(step + 1)}, 400)}}>Make on post on Instagram to redeem points. Copy the Caption: <br /><span style={{opacity: 1, fontWeight: 700}}>{pokePullup.job.step1}</span>
+                    </div>
+                </>
+            );
+            step2 = (
+                <>
+                    <button style={step === 2 ? {} : {backgroundColor: "lightGrey", color: "grey", opacity: 0.5}}  onClick={() => handleVerifyingInsta()}>Confirm Instagram Post</button>
                 </>
             );
             break;

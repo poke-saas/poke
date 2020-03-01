@@ -9,6 +9,7 @@ import PokeModal from './components/PokeModal/PokeModal'
 import PokePullup from "./components/PokePullup/PokePullup";
 import TwitterLoginModal from "./components/LoginModal/TwitterLoginModal";
 import SignIn from "./components/LoginModal/SignIn";
+import InstagramLoginModal from "./components/LoginModal/InstagramLoginModal";
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
               )}/>
                 <Route exact={true} path='/connect-twitter' render={() => (
                     <TwitterLoginModal />
+                )}/>
+                <Route exact={true} path='/connect-instagram' render={() => (
+                    <InstagramLoginModal />
                 )}/>
                 <Route exact={true} path='/login' render={() => (
                     <SignIn />

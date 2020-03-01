@@ -24,6 +24,13 @@ const PokeModal = () => {
                 </>
             );
             break;
+        case "connectToInstagram":
+            content = (
+                <>
+                    <p>To use this poke connect your Instagram account!</p>
+                </>
+            );
+            break;
         default:
             break;
     }

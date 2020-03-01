@@ -189,9 +189,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 pokePullup: {
                     ...state.pokePullup,
-                    job: {
-
-                        },
+                    job: {},
                     pokeID: -1,
                     reward: 0
                 }

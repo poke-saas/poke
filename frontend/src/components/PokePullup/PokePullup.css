@@ -1,9 +1,9 @@
 #PokePullup {
     position: fixed;
     bottom: 0;
-    height: 35vh;
+    height: 45vh;
     width: 100%;
-    border-radius: 12px;
+    border-radius: 12px 12px 0 0;
     background-color: white;
     -webkit-transition: margin 0.3s;
     -moz-transition: margin 0.3s;

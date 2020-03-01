@@ -43,6 +43,7 @@ const Rewards = () => {
                         id={reward.id}
                         name={reward.name}
                         cost={reward.cost}
+                        desc={reward.desc}
                         img={reward.img}
                         claimed={reward.claimed}
                     />

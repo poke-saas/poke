@@ -45,7 +45,7 @@ a.connect#instagram {
     background-color: #c13584;
 }
 
-button.connect#instagram-connected {
+a.connect#instagram-connected {
     background-color: white;
     color: #c13584;
 }

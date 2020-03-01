@@ -43,6 +43,16 @@ const PokeCard = (props) => {
                 dispatch({type: "SET_POKEPULLUP_JOB", pokePullupJob: {type: "verifyTweet", name: props.name, step1: tweetURL, step2: "job", pokeID: props.id, reward: props.reward}});
                 dispatch({type: "TOGGLE_POKEPULLUP"});
                 break;
+            case "ig_post":
+                if(state.instagramToken === null) {
+                    dispatch({type: "SET_POKEMODAL_TYPE", pokeModalType: "connectToInstagram" });
+                    dispatch({type: "TOGGLE_POKEMODAL"});
+                    break;
+                }
+                console.log(props.id);
+                dispatch({type: "SET_POKEPULLUP_JOB", pokePullupJob: {type: "verifyInsta", name: props.name, step1: props.data.body, step2: "job", pokeID: props.id, reward: props.reward}});
+                dispatch({type: "TOGGLE_POKEPULLUP"});
+                break;
             default:
                 console.error("Invalid Claim Type");
         }
@@ -57,7 +67,7 @@ const PokeCard = (props) => {
             <div className="PokeCard">
                 <div className="info">
                     <h2>{props.name}</h2>
-                    <p>On {props.desc}</p>
+                    <p>{props.desc}</p>
                 </div>
                 <div className="action">
                     <div className="point-value">

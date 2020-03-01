@@ -30,7 +30,7 @@ const RewardCard = (props) => {
                 <img src={props.img} alt="Reward Card Image" onError={"https://via.placeholder.com/400x175"} />
                 <div className="info">
                     <h2>{props.name}</h2>
-                    <p>Sample text, description of info.</p>
+                    <p>{props.desc}</p>
                     <div className="claim-wrapper">
                         <div className="cost"><FontAwesomeIcon icon={faTrophy} />&nbsp; Costs {props.cost} pts</div>
                         <div className="claim">
