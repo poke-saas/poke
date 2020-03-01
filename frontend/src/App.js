@@ -15,6 +15,9 @@ function App() {
     <div className="App">
         <BrowserRouter>
             <Switch>
+                <Route exact={true} path='/' render={() => (
+                    <Redirect to="/login" />
+                )}/>
               <Route exact={true} path='/pokes' render={() => (
                   <Pokes />
               )}/>

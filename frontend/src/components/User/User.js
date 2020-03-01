@@ -14,6 +14,7 @@ const User = () => {
     const points = useSelector(state => state.points);
     const uid = useSelector(state => state.uid);
     const user = useSelector(state => state.user);
+    const rewardsEarned = useSelector(state => state.rewardsEarned);
     const dispatch = useDispatch();
 
     const fetchPokes = () => {
@@ -74,7 +75,7 @@ const User = () => {
                     </tr>
                     <tr>
                         <th>Rewards Earned</th>
-                        <td>5 Rewards</td>
+                        <td>{rewardsEarned} Rewards</td>
                     </tr>
                 </table>
                 <FacebookButton 

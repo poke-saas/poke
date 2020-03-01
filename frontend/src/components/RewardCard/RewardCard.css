@@ -78,6 +78,7 @@
 .RewardCard .cost {
     display: table-cell;
     opacity: 0.5;
+    font-size: 0.8rem;
 }
 
 .RewardCard * {

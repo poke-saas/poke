@@ -12,6 +12,7 @@ import * as serviceWorker from './serviceWorker';
 const initialState = {
     user: null,
     uid: null,
+    rewardsEarned: 0,
     twitterToken: null,
     facebookToken: null,
     instagramToken: null,
@@ -75,8 +76,8 @@ const reducer = (state = initialState, action) => {
             }
             state = {
                 ...state,
-                points: action.points - action.cost
-
+                points: action.points - action.cost,
+                rewardsEarned: state.rewardsEarned + 1
             };
             break;
         case "ADD_POINTS":
@@ -180,6 +181,19 @@ const reducer = (state = initialState, action) => {
                     job: action.pokePullupJob,
                     pokeID: action.pokeID,
                     reward: action.reward
+                }
+            };
+            break;
+        case "CLEAR_POKEPULLUP":
+            state={
+                ...state,
+                pokePullup: {
+                    ...state.pokePullup,
+                    job: {
+
+                        },
+                    pokeID: -1,
+                    reward: 0
                 }
             };
             break;
