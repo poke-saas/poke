@@ -9,7 +9,7 @@ const InstagramButton = () => {
     const [isConnected, toggleConnected] = useState(false);
 
     return (
-        <button className="connect" id={isConnected ? "instagram-connected" : "instagram"} onClick={() => toggleConnected(!isConnected)}>
+        <button className="connect" id={isConnected ? "instagram-connected" : "instagram"} onClick={() => toggleConnected()}>
             { isConnected ? 
                 (<><FontAwesomeIcon icon={faLink} />&nbsp; Connected to Instagram</>)
                 :
