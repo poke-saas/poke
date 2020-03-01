@@ -8,18 +8,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const Rewards = () => {
 
-    const uid = useSelector(state => state.uid);
-
-    const fetchRewards = () => {
-        axios.get("http://us-central1-poke-app-269623.cloudfunctions.net/poke-get-rewards?uid=" + uid)
-            .then(res => {
-                const rewards = res.data;
-                dispatch({type: "REFRESH_REWARDS", rewards: rewards.rewards});
-            })
-    };
-
-    useEffect(() => fetchRewards(), []);
-
     const dispatch = useDispatch();
     const points = useSelector(state => state.points);
     const rewards = useSelector(state => state.rewards);
@@ -31,7 +19,7 @@ const Rewards = () => {
             </header>
             <div className="point-display">
                 <div className="display-table">
-                    <FontAwesomeIcon className="vis" icon={faTrophy} style={{color: "orange", marginLeft: "10px"}} />
+                    <FontAwesomeIcon className="vis" icon={faTrophy} style={{color: "orange", padding: "20px"}} />
                     <div className="info">
 
                         { points === 0
@@ -49,23 +37,16 @@ const Rewards = () => {
                     </div>
                 </div>
             </div>
-            <button onClick={() => dispatch({type: "ADD_POINTS", points: 1})}>
-                Add 1 pt
-            </button>
-            <main className="container">
+            <main className="container" style={{paddingTop: "8em"}}>
                 {rewards.map(reward => (
                     <RewardCard
-                        key={reward.id}
+                        id={reward.id}
                         name={reward.name}
                         cost={reward.cost}
                         img={reward.img}
+                        claimed={reward.claimed}
                     />
                 ))}
-                <RewardCard 
-                    name="Reward Name"
-                    cost={4}
-                    image="hi"
-                />
             </main>
         </>
     );

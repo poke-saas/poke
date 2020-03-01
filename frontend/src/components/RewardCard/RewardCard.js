@@ -3,18 +3,23 @@ import './RewardCard.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCheck as check, faTrophy, faTimes} from '@fortawesome/free-solid-svg-icons'
 import {useDispatch, useSelector} from "react-redux";
+import axios from "axios";
 
 const RewardCard = (props) => {
 
     const points = useSelector(state => state.points);
+    const uid = useSelector(state => state.uid);
     const dispatch = useDispatch();
 
     const handleClaimReward = () => {
         console.log(points >= props.cost);
         if (points >= props.cost) {
+            axios.get("http://us-central1-poke-app-269623.cloudfunctions.net/poke-send-reward-verification-text?uid=" + uid + "&rid=" + props.id)
+                .then(res => {
+                    const resData = res;
+                });
             console.log("Point balance: " + points + "\nCost: " + props.cost);
-
-            dispatch({type: "CLAIM_REWARD", points: points, cost: props.cost});
+            dispatch({type: "CLAIM_REWARD", points: points, cost: props.cost, thisReward: props.id});
         }
         else console.error("Not enough points!\nPoint Balance: " + points);
     };
@@ -29,11 +34,13 @@ const RewardCard = (props) => {
                     <div className="claim-wrapper">
                         <div className="cost"><FontAwesomeIcon icon={faTrophy} />&nbsp; Costs {props.cost} pts</div>
                         <div className="claim">
-                            <button onClick={() => handleClaimReward()} className={points >= props.cost ? "" : "unclaimable" }>
-                                {points >= props.cost ?
+                            <button onClick={() => handleClaimReward()} className={!props.claimed && points >= props.cost ? "" : "unclaimable"}>
+                                {props.claimed ?
+                                    <><FontAwesomeIcon icon={check} />&nbsp; Reward Claimed</>
+                                    : (points >= props.cost ?
                                     <><FontAwesomeIcon icon={check} />&nbsp; Claim Reward</>
                                     :
-                                    <><FontAwesomeIcon icon={faTimes} />&nbsp; Insufficient Points</>
+                                    <><FontAwesomeIcon icon={faTimes} />&nbsp; Insufficient Points</>)
                                 }
 
                             </button>

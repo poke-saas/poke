@@ -1,6 +1,9 @@
-button.connect {
+a.connect {
+    display: block;
+    text-decoration: none;
+    text-align: center;
     width: 100%;
-    margin: 0px 0 10px 0;
+    margin: 0 0 10px 0;
     padding: 20px 0;
     background-color: black;
     border: none;
@@ -20,25 +23,25 @@ button.connect {
     transition: all 0.2s;
 }
 
-button.connect#facebook {
+a.connect#facebook {
     background-color: #3b5998;
 }
 
-button.connect#facebook-connected {
+a.connect#facebook-connected {
     background-color: white;
     color: #3b5998;
 }
 
-button.connect#twitter {
+a.connect#twitter {
     background-color: #1da1f2;
 }
 
-button.connect#twitter-connected {
+a.connect#twitter-connected {
     background-color: white;
     color: #1da1f2;
 }
 
-button.connect#instagram {
+a.connect#instagram {
     background-color: #c13584;
 }
 

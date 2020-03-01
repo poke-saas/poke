@@ -43,8 +43,10 @@
     margin: 0;
 }
 
-.PokeCard .info h2 {
+.PokeCard h2 {
     margin-bottom: 0.3em;
+    width: 100%;
+    display: block;
 }
 
 .PokeCard .info p {
