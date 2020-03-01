@@ -14,5 +14,4 @@ def jaccard_similariy_index(first, second):
 
     # Then, find the ratio between their intersection and their total length
     intersection = tokenize_first.intersection(tokenize_second)
-    print(intersection)
     return float(len(intersection)) / (len(tokenize_first) + len(tokenize_second) - len(intersection))

@@ -1,9 +1,8 @@
 import tweepy as tw
-from nlp_lib import jaccard_similariy_index, __jaccard_threshold__
-import json
-from google.cloud import firestore
+from scripts.nlp_lib import jaccard_similariy_index, __jaccard_threshold__
+from backend.db_entry import *
 
-__number_of_tweets__ = 10
+__number_of_tweets__ = 5
 
 def scrape_tweets(handle, number_of_tweets):
     """
@@ -40,7 +39,7 @@ def scrape_tweets(handle, number_of_tweets):
     except BaseException as e:
         print("failed for some reason: {}".format(e))
 
-    return json.dumps(tweets, default=str)
+    return tweets
 
 def check_if_tweet_in_user(tweet_to_check, handle):
     """
@@ -52,8 +51,15 @@ def check_if_tweet_in_user(tweet_to_check, handle):
     user_tweets = scrape_tweets(handle, __number_of_tweets__)
 
     for tweet in user_tweets:
-        if jaccard_similariy_index(tweet_to_check, tweet.text) > __jaccard_threshold__:
+        if jaccard_similariy_index(tweet_to_check, tweet['text']) > __jaccard_threshold__:
             return True
     return False
+
+def check_single_poke(user, poke_id):
+    poke = get_poke(poke_id)
+    if(check_if_tweet_in_user(poke['data']['body'], user['user_credentials']['twitter_uname'])):
+        return poke['pts']
+    return None
+
 
 print(scrape_tweets("dakeenekid", 5))

@@ -1,5 +1,4 @@
 from backend.db_entry import *
-from scripts.db_utils import *
 
 import hashlib
 
