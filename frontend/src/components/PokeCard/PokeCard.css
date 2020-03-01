@@ -1,10 +1,4 @@
 .PokeCard {
-    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -ms-flexbox;      /* TWEENER - IE 10 */
-    display: -webkit-flex;     /* NEW - Chrome */
-    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
-    flex: 1;
     position: relative;
     width: 100%;
     color: #212121;
@@ -30,13 +24,7 @@
 }
 
 .PokeCard .info {
-    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -ms-flexbox;      /* TWEENER - IE 10 */
-    display: -webkit-flex;     /* NEW - Chrome */
-    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
-    flex: 5;
-    flex-direction: column;
+    width: 100%;
 }
 
 .PokeCard .info h2, p {
@@ -51,45 +39,37 @@
 
 .PokeCard .info p {
     margin: 0.33em 0;
-}
-
-.PokeCard .info * {
-    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -ms-flexbox;      /* TWEENER - IE 10 */
-    display: -webkit-flex;     /* NEW - Chrome */
-    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    opacity: 0.5;
+    font-size: 16px;
 }
 
 .PokeCard .action {
-    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-    display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-    display: -ms-flexbox;      /* TWEENER - IE 10 */
-    display: -webkit-flex;     /* NEW - Chrome */
-    display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
-    flex: 5;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-direction: column;
+    margin-top: 12px;
+    display: table;
+    width: 100%;
 }
 
 .PokeCard .action .claim {
+    display: inline-block;
     padding: 12px 24px;
     background-color: blue;
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    width: 70px;
 }
 
-.PokeCard .action .delete {
-    font-size: 21px;
-    opacity: 0.5;
-    cursor: pointer;
+.PokeCard .point-value, .PokeCard .claim-wrapper {
+    display: table-cell;
 }
 
-.PokeCard .action .delete:hover {
-    opacity: 0.6;
-    color: red;
+.PokeCard .point-value {
+    font-size: 18px;
+    opacity: 0.85;
+}
+
+.PokeCard .claim-wrapper {
+    text-align: right;
 }
 
 .PokeCard * {

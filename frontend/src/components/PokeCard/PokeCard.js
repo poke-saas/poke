@@ -1,7 +1,7 @@
 import React from 'react';
 import './PokeCard.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTimesCircle, faCheck} from '@fortawesome/free-solid-svg-icons'
+import {faTrophy, faCheck} from '@fortawesome/free-solid-svg-icons'
 import {useDispatch, useSelector} from "react-redux";
 
 const PokeCard = (props) => {
@@ -57,15 +57,17 @@ const PokeCard = (props) => {
             <div className="PokeCard">
                 <div className="info">
                     <h2>{props.name}</h2>
-                    <p>On {props.platform}</p>
-                    <p>For {props.reward} pts</p>
+                    <p>On {props.desc}</p>
                 </div>
                 <div className="action">
-                    <div className="delete" onClick={() => deferPoke()}>
-                        {/*<FontAwesomeIcon icon={faTimesCircle} />*/}
+                    <div className="point-value">
+                        <FontAwesomeIcon icon={faTrophy} />&nbsp;
+                        {props.reward} pts
                     </div>
-                    <div className="claim" onClick={() => handlePoke()}>
-                     <FontAwesomeIcon icon={faCheck} />&nbsp; Claim
+                    <div className="claim-wrapper">
+                        <div className="claim" onClick={() => handlePoke()}>
+                            <FontAwesomeIcon icon={faCheck} />&nbsp; Claim
+                        </div>
                     </div>
                 </div>
 

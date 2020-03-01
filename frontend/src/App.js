@@ -15,6 +15,11 @@ function App() {
   return (
     <div className="App">
         <BrowserRouter>
+            <TransitionGroup>
+            <CSSTransition
+                timeout={500}
+                classNames="fade"
+            >
             <Switch>
                 <Route exact={true} path='/' render={() => (
                     <Redirect to="/login" />
@@ -36,6 +41,8 @@ function App() {
                 )}/>
               <Route component={<Redirect to="/login" />} />
             </Switch>
+            </CSSTransition>
+            </TransitionGroup>
           <BottomNav />
           <PokeModal />
           <PokePullup/>
