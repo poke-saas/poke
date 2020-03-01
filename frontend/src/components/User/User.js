@@ -1,11 +1,16 @@
 import React from 'react';
 import './User.css';
+import {useSelector, useDispatch} from "react-redux";
 import * as pic from '../../profile_davis.jpg'
 import FacebookButton from '../ConnectButton/FacebookButton';
 import TwitterButton from '../ConnectButton/TwitterButton';
 import InstagramButton from '../ConnectButton/InstagramButton';
 
 const User = () => {
+
+    const points = useSelector(state => state.points);
+    const dispatch = useDispatch();
+
     return (
         <>
             <header>
@@ -23,7 +28,7 @@ const User = () => {
                     <name>Your Stats</name>
                     <tr>
                         <th>Point Balance</th>
-                        <td>4 pts</td>
+                        <td>{points} pts</td>
                     </tr>
                     <tr>
                         <th>All Time Points</th>

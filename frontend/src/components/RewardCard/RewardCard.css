@@ -68,6 +68,13 @@
     outline: none;
 }
 
+.RewardCard .claim button.unclaimable {
+    background-color: lightgrey;
+    cursor: not-allowed;
+    color: grey;
+    opacity: 0.6;
+}
+
 .RewardCard .cost {
     display: table-cell;
     opacity: 0.5;

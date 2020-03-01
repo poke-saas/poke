@@ -5,6 +5,8 @@ import Pokes from './components/Pokes/Pokes';
 import Rewards from './components/Rewards/Rewards'
 import Users from './components/User/User';
 import BottomNav from './components/BottomNav/BottomNav'
+import PokeModal from './components/PokeModal/PokeModal'
+import PokePullup from "./components/PokePullup/PokePullup";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
               <Route component={Pokes} />
             </Switch>
           <BottomNav />
+          <PokeModal />
+          <PokePullup/>
        </BrowserRouter>
     </div>
   );

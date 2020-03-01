@@ -1,12 +1,40 @@
 .point-display {
     width: 100%;
-    display: table;
+    background-color: white;
+    box-shadow:
+            0 3.4px 2.7px rgba(0, 0, 0, 0.006),
+            0 8.7px 6.9px rgba(0, 0, 0, 0.009),
+            0 17.7px 14.2px rgba(0, 0, 0, 0.011),
+            0 36.5px 29.2px rgba(0, 0, 0, 0.014),
+            0 100px 80px rgba(0, 0, 0, 0.02)
+;
 }
 
-.point-display img {
+.display-table {
+    width: 95%;
+    display: table;
+    padding: 1.5em 0;
+    margin: 0 auto;
+}
+
+.point-display .vis {
     display: table-cell;
+    font-size: 50px;
 }
 
 .point-display .info {
     display: table-cell;
+    vertical-align: middle;
+}
+
+.point-display .info h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.point-display .info p {
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 0.3em;
 }
