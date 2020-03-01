@@ -9,32 +9,100 @@ import storage from 'redux-persist/lib/storage'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-
 const initialState = {
-    twitterToken: null,
+    auth: "",
+    twitterToken: "val",
     facebookToken: null,
     instagramToken: null,
-    declined: []
+    declined: [],
+    points: 10,
+    claimedRewards: [],
+    pokeModal: {
+        type: "",
+        open: false
+    },
+    pokePullup: {
+        job: "",
+        pokeID: null,
+        open: true
+    }
   };
-  
-  const reducer = (state = initialState, action) => {
+
+const reducer = (state = initialState, action) => {
   //  console.log(action);
     switch (action.type) {
         case "UPDATE_FACEBOOK_TOKEN":
             state = {
                 ...state,
                 facebookToken: action.facebookToken
-            }
+            };
+            break;
         case "UPDATE_TWITTER_TOKEN":
             state = {
                 ...state,
                 twitterToken: action.twitterToken
-            }
+            };
+            break;
         case "UPDATE_INSTAGRAM_TOKEN":
             state = {
                 ...state,
                 instagramToken: action.instagramToken
-            }
+            };
+            break;
+        case "CLAIM_REWARD":
+            state = {
+                ...state,
+                points: action.points - action.cost
+                // claimedRewards: state.rewards.push(action.reward)
+            };
+            break;
+        case "ADD_POINTS":
+            state = {
+                ...state,
+                points: state.points + action.points
+                // claimedRewards: state.rewards.push(action.reward)
+            };
+            break;
+        case "TOGGLE_POKEMODAL":
+            state = {
+                ...state,
+                pokeModal: {
+                    ...state.pokeModal,
+                    open: !state.pokeModal.open
+                }
+            };
+            break;
+        case "SET_POKEMODAL_TYPE":
+            state = {
+                ...state,
+                pokeModal: {
+                    ...state.pokeModal,
+                    type: action.pokeModalType
+                }
+            };
+            break;
+        case "TOGGLE_POKEPULLUP":
+            state = {
+                ...state,
+                pokePullup: {
+                    ...state.pokePullup,
+                    open: !state.pokePullup.open
+                }
+            };
+            break;
+        case "SET_POKEPULLUP_JOB":
+            state = {
+                ...state,
+                pokePullup: {
+                    ...state.pokePullup,
+                    job: action.pokePullupJob,
+                    pokeID: action.pokeID
+                }
+            };
+            break;
+        default:
+            console.error("Invalid Action");
+            break;
     }
     return state;
   };
