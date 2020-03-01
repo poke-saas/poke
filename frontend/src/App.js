@@ -9,17 +9,11 @@ import PokeModal from './components/PokeModal/PokeModal'
 import PokePullup from "./components/PokePullup/PokePullup";
 import TwitterLoginModal from "./components/LoginModal/TwitterLoginModal";
 import SignIn from "./components/LoginModal/SignIn";
-import {CSSTransition, TransitionGroup} from "react-transition-group";
 
 function App() {
   return (
     <div className="App">
         <BrowserRouter>
-            <TransitionGroup>
-            <CSSTransition
-                timeout={500}
-                classNames="fade"
-            >
             <Switch>
                 <Route exact={true} path='/' render={() => (
                     <Redirect to="/login" />
@@ -41,8 +35,6 @@ function App() {
                 )}/>
               <Route component={<Redirect to="/login" />} />
             </Switch>
-            </CSSTransition>
-            </TransitionGroup>
           <BottomNav />
           <PokeModal />
           <PokePullup/>
