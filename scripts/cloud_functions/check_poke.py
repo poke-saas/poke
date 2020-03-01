@@ -8,13 +8,14 @@ def check_poke(uid, poke_id):
 
     poke_type = poke['cta'][:2]
 
-    handler = {
-        'fb': verify_facebook(user, poke),
-        'tw': verify_twitter(user, poke),
-        'ig': verify_instagram(user, poke)
-    }
-
-    return handler.get(poke_type, False)
+    if poke_type == 'tw':
+        return verify_twitter(user, poke)
+    elif poke_type == 'fb':
+        return verify_facebook(user, poke)
+    elif poke_type == 'ig':
+        return verify_instagram(user, poke)
+    else:
+        return None
 
 def verify_twitter(user, poke):
     if(check_if_tweet_in_user(poke['data']['body'], user['user_credentials']['twitter_uname'])):

@@ -2,7 +2,7 @@ import tweepy as tw
 from scripts.nlp_lib import jaccard_similariy_index, __jaccard_threshold__
 from backend.db_entry import *
 
-__number_of_tweets__ = 10
+__number_of_tweets__ = 5
 
 def scrape_tweets(handle, number_of_tweets):
     """
