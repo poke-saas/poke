@@ -1,7 +1,7 @@
 ### IMPORTS 
 
 import json 
-import nlp_lib as nlp
+import scripts.nlp_lib as nlp
 
 from igramscraper.instagram import Instagram
 from google.cloud import firestore

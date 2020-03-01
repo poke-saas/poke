@@ -1,13 +1,12 @@
+from scripts.twitter_scraper import check_if_tweet_in_user
+from scripts.instagram_scraper import *
 from backend.db_entry import *
-from backend.user_auth import *
-from backend.internal_utils import *
-from scripts.twitter_scraper import *
 
 def check_poke(uid, poke_id):
     user = get_user(uid)
     poke = get_poke(poke_id)
 
-    poke_type = poke['type'][:2]
+    poke_type = poke['cta'][:2]
 
     handler = {
         'fb': verify_facebook(user, poke),
@@ -17,12 +16,13 @@ def check_poke(uid, poke_id):
 
     return handler.get(poke_type, False)
 
-
 def verify_twitter(user, poke):
-    return check_if_tweet_in_user(poke['data']['body'], user['user_credentials']['twitter_uname'])
+    if(check_if_tweet_in_user(poke['data']['body'], user['user_credentials']['twitter_uname'])):
+        return poke['pts']
+    return None
 
 def verify_instagram(user, poke):
-    return True
+    return check_single_poke(user, poke['id'])
 
 def verify_facebook(user, poke):
     return True
