@@ -17,6 +17,7 @@ const Pokes = () => {
                     data={{
                             text: "This is tweet! Crazy isn't it? #tweet #cool"
                         }}
+                    id={"testHash45356"}
                 />
                 <PokeCard 
                     name="Poke Name"

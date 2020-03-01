@@ -39,7 +39,7 @@ const PokeCard = (props) => {
                         }
                         tweetURL += tweetHashtags[tweetHashtags.length - 1];
                     }
-                dispatch({type: "SET_POKEPULLUP_JOB", pokePullupJob:  {type: "verifyTweet", step1: tweetURL, step2: "job"}});
+                dispatch({type: "SET_POKEPULLUP_JOB", pokePullupJob:  {type: "verifyTweet", step1: tweetURL, step2: "job", pokeID: props.id}});
                 dispatch({type: "TOGGLE_POKEPULLUP"});
                 break;
             default:

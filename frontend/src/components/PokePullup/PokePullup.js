@@ -16,6 +16,12 @@ const PokePullup = () => {
         dispatch({type: "TOGGLE_POKEPULLUP"});
     };
 
+    const handleVerifyingTweet = () => {
+        window.setTimeout(() => {console.log("waited")},7000);
+        console.log("VERIFYING TWEET");
+        updateStep(step + 1);
+    };
+
     let step1, step2 = <></>;
 
     console.log(pokePullup);
@@ -23,12 +29,12 @@ const PokePullup = () => {
         case "verifyTweet":
             step1 = (
                 <>
-                    <button style={step === 1 ? {} : {backgroundColor: "lightGrey", color: "grey", opacity: 0.5}} onClick={() => {window.open(pokePullup.job.step1, "_blank"); updateStep(step + 1)}}>Tweet to Claim Points</button>
+                    <button style={step === 1 ? {} : {backgroundColor: "lightGrey", color: "grey", opacity: 0.5}} onClick={() => {window.open(pokePullup.job.step1, "_blank"); setTimeout(function() {updateStep(step + 1)}, 1500)}}>Tweet to Claim Points</button>
                 </>
             );
             step2 = (
                 <>
-                    <button style={step === 2 ? {} : {backgroundColor: "lightGrey", color: "grey", opacity: 0.5}}  onClick={() => console.log("RUN JOB")}>Confirm Posted Tweet</button>
+                    <button style={step === 2 ? {} : {backgroundColor: "lightGrey", color: "grey", opacity: 0.5}}  onClick={() => handleVerifyingTweet()}>Confirm Posted Tweet</button>
                 </>
             );
             break;

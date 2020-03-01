@@ -23,6 +23,7 @@ const initialState = {
     },
     pokePullup: {
         job: "",
+        pokeID: null,
         open: true
     }
   };
@@ -94,7 +95,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 pokePullup: {
                     ...state.pokePullup,
-                    job: action.pokePullupJob
+                    job: action.pokePullupJob,
+                    pokeID: action.pokeID
                 }
             };
             break;
