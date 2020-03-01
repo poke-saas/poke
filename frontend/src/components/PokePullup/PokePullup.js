@@ -23,7 +23,7 @@ const PokePullup = () => {
         case "verifyTweet":
             step1 = (
                 <>
-                    <button style={step === 1 ? {} : {backgroundColor: "lightGrey", color: "grey", opacity: 0.5}} onClick={() => {window.location.href = pokePullup.job.step1; updateStep(step + 1)}}>Tweet to Claim Points</button>
+                    <button style={step === 1 ? {} : {backgroundColor: "lightGrey", color: "grey", opacity: 0.5}} onClick={() => {window.open(pokePullup.job.step1, "_blank"); updateStep(step + 1)}}>Tweet to Claim Points</button>
                 </>
             );
             step2 = (
