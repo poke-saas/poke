@@ -26,7 +26,7 @@ const User = () => {
     };
 
     const fetchRewards = () => {
-        axios.get("http://us-central1-poke-app-269623.cloudfunctions.net/poke-get-rewards?uid=" + uid)
+        axios.get("https://us-central1-poke-app-269623.cloudfunctions.net/poke-get-rewards?uid=" + uid)
             .then(res => {
                 const rewards = res.data;
                 dispatch({type: "REFRESH_REWARDS", rewards: rewards.rewards});

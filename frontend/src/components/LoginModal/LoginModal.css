@@ -12,7 +12,6 @@
     box-sizing: border-box;
     padding: 20px;
     padding-top: 6px;
-    z-index: 9999;
 }
 
 .login-card input {
