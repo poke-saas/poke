@@ -7,8 +7,8 @@ from backend.db_entry import *
 
 def can_user_claim_reward(user_ref, reward_ref):
     db = get_db()
-    user = db.collection(u'Users').document(user_ref).get().to_json()
-    reward = db.collection(u'Rewards').document(reward_ref).get().to_json()
+    user = db.collection(u'Users').document(user_ref).get().to_dict()
+    reward = db.collection(u'Rewards').document(reward_ref).get().to_dict()
 
     if user is None or reward is None:
         print("User is {} and reward is {}".format(user, reward))

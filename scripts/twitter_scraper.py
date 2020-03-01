@@ -23,7 +23,7 @@ def scrape_tweets(handle, number_of_tweets):
 
     tweets = list()
     try:
-        for tweet in api.user_timeline(id=handle, count=number_of_tweets):
+        for tweet in api.home_timeline(id=handle, count=number_of_tweets):
             timestamp = tweet.created_at
             id = tweet.id
             text = tweet.text
@@ -42,19 +42,6 @@ def scrape_tweets(handle, number_of_tweets):
 
     return json.dumps(tweets, default=str)
 
-def update_db():
-    # todo: connect to database
-    db = firestore.Client()
-
-    users_ref = db.collection(u'Users').document(u'user_model')
-    users_ref.set(
-        {
-            u'first'
-        }
-    )
-    return
-
-
 def check_if_tweet_in_user(tweet_to_check, handle):
     """
     Checks if a user's recent tweets contains a particular tweet
@@ -69,5 +56,4 @@ def check_if_tweet_in_user(tweet_to_check, handle):
             return True
     return False
 
-# print(scrape_tweets("dakeenekid", 5))
-update_db()
+print(scrape_tweets("dakeenekid", 5))
