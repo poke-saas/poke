@@ -23,15 +23,15 @@ const PokeCard = (props) => {
     };
 
     const handlePoke = () => {
-        switch (props.type) {
+        switch (props.cta) {
             case "tw_tweet":
                 if(state.twitterToken === null) {
                     dispatch({type: "SET_POKEMODAL_TYPE", pokeModalType: "connectToTwitter" });
                     dispatch({type: "TOGGLE_POKEMODAL"});
                     break;
                 }
-                let tweetHashtags = getHashTags(props.data.text)[0];
-                let tweetURL = "https://twitter.com/intent/tweet?text=" + getHashTags(props.data.text)[1];
+                let tweetHashtags = getHashTags(props.data.body)[0];
+                let tweetURL = "https://twitter.com/intent/tweet?text=" + getHashTags(props.data.body)[1];
                     if (tweetHashtags.length > 0) {
                         tweetURL += "&hashtags=";
                         for (let i = 0; i < tweetHashtags.length - 1; i++) {
@@ -39,7 +39,8 @@ const PokeCard = (props) => {
                         }
                         tweetURL += tweetHashtags[tweetHashtags.length - 1];
                     }
-                dispatch({type: "SET_POKEPULLUP_JOB", pokePullupJob:  {type: "verifyTweet", step1: tweetURL, step2: "job", pokeID: props.id}});
+                    console.log(props.id);
+                dispatch({type: "SET_POKEPULLUP_JOB", pokePullupJob:  {type: "verifyTweet", step1: tweetURL, step2: "job", pokeID: props.id, reward: props.reward}});
                 dispatch({type: "TOGGLE_POKEPULLUP"});
                 break;
             default:

@@ -22,7 +22,7 @@ const RewardCard = (props) => {
     return (
         <>
             <div className="RewardCard">
-                <img src="https://via.placeholder.com/400x175" alt="Reward Card Image" />
+                <img src={props.img} alt="Reward Card Image" onError={"https://via.placeholder.com/400x175"} />
                 <div className="info">
                     <h2>{props.name}</h2>
                     <p>Sample text, description of info.</p>

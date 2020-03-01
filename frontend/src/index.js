@@ -10,16 +10,18 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const initialState = {
-    auth: "",
+    uid: "1076440981d44efb",
     twitterToken: "val",
     facebookToken: null,
     instagramToken: null,
     declined: [],
     points: 10,
+    rewards: [],
+    pokes: [],
     claimedRewards: [],
     pokeModal: {
         type: "",
-        open: false
+        open: true
     },
     pokePullup: {
         job: "",
@@ -63,6 +65,42 @@ const reducer = (state = initialState, action) => {
                 // claimedRewards: state.rewards.push(action.reward)
             };
             break;
+        case "REFRESH_REWARDS":
+            let newRewards = state.rewards;
+            let allRewards = action.rewards;
+            for (const reward of allRewards) {
+                let isSame = false;
+                for (const oldReward of newRewards)
+                    if (reward.id == oldReward.id) {
+                        isSame = true;
+                    }
+                if (!isSame) {
+                    newRewards.push(reward);
+                }
+            };
+            state = {
+                ...state,
+                rewards: newRewards
+            };
+            break;
+        case "REFRESH_POKES":
+            let newPokes = state.pokes;
+            let allPokes = action.pokes;
+            for (const poke of allPokes) {
+                let isSame = false;
+                for (const oldPoke of newPokes)
+                    if (poke.id == oldPoke.id) {
+                        isSame = true;
+                    }
+                if (!isSame) {
+                    newPokes.push(poke);
+                }
+            };
+            state = {
+                ...state,
+                pokes: newPokes
+            };
+            break;
         case "TOGGLE_POKEMODAL":
             state = {
                 ...state,
@@ -96,7 +134,8 @@ const reducer = (state = initialState, action) => {
                 pokePullup: {
                     ...state.pokePullup,
                     job: action.pokePullupJob,
-                    pokeID: action.pokeID
+                    pokeID: action.pokeID,
+                    reward: action.reward
                 }
             };
             break;
