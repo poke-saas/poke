@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import Pokes from './components/Pokes/Pokes';
 import Rewards from './components/Rewards/Rewards'
 import Users from './components/User/User';
@@ -30,7 +30,7 @@ function App() {
                 <Route exact={true} path='/login' render={() => (
                     <SignIn />
                 )}/>
-              <Route component={Pokes} />
+              <Route component={<Redirect to="/login" />} />
             </Switch>
           <BottomNav />
           <PokeModal />
